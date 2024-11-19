@@ -1,0 +1,10 @@
+node -v para ver a versao do node
+
+npm init es6 -y para criar uma versao de do node naa pasta do arquivo que estou trabalahndo 
+
+npm install express serve para instalar a biblioteca express
+
+chave da api do google  ai studo = curl \
+  -H "Content-Type: application/json" \
+  -d "{\"contents\":[{\"parts\":[{\"text\":\"Explain how AI works\"}]}]}" \
+  -X POST "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=YOUR_API_KEY"
