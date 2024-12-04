@@ -1,46 +1,19 @@
+// Importa o framework Express para criar o servidor
 import express from "express";
+// Importa o arquivo que contém as rotas relacionadas aos "posts"
+import routes from "./src/routes/postsRoutes.js";
 
-const posts = [
-    {
-        id: 1,
-        descricao: "gato",
-        imagem: "https://placecats.com/millie/300/150",
-    },
-    {
-        id: 2,
-        descricao: "triste",
-        imagem: "https://placecats.com/millie/300/150",
-    },
-    {
-        id: 3,
-        descricao: "cat",
-        imagem: "https://placecats.com/millie/300/150",
-    },
-    {
-        id: 4,
-        descricao: "bad",
-        imagem: "https://placecats.com/millie/300/150",
-    }
-];
-
+// Inicializa a aplicação Express
 const app = express();
-app.use(express.json());
 
-app.listen(8000,()=>{
-    console.log("serve on");
+// Define o diretório de arquivos estáticos (como imagens ou outros uploads)
+app.use(express.static("uploads"));
+
+// Adiciona as rotas importadas ao servidor
+routes(app);
+
+// Configura o servidor para escutar na porta 8000
+app.listen(8000, () => {
+    console.log("Server running on port 8000");
 });
 
-app.get("/posts", (req, res) =>{
-    res.status(200).json(posts);
-});
-
-function buscaPostId(id){
-    return posts.findIndex((post)=>{
-        return post.id === Number(id);
-    });
-}
-
-app.get("/post/:id", (req, res) =>{
-    const index = buscaPostId(req.params.id);
-    res.status(200).json(posts[index]);
-});
